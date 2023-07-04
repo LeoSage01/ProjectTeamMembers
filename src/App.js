@@ -111,11 +111,11 @@ function App() {
 
   }, [selectedTeam])
 
-  const handleTeamSelectionChange = (event) => {
+  function handleTeamSelectionChange (event) {
     setTeam(event.target.value)
   }
 
-  const handleEmployeeCardClick = (event) => {
+  function handleEmployeeCardClick (event) {
     const transformedEmployees = employees.map((employee) => employee.id === parseInt(event.currentTarget.id)
       ? (employee.teamName === selectedTeam) ? { ...employee, teamName: '' } : { ...employee, teamName: selectedTeam }
       : employee)
@@ -136,7 +136,8 @@ function App() {
               handleEmployeeCardClick={handleEmployeeCardClick}
             />}>
           </Route>
-          <Route path='/GroupedTeamMembers' element={<GroupedTeamMembers />}>
+          <Route path='/GroupedTeamMembers' element={<GroupedTeamMembers employees = {employees} 
+                                            selectedTeam = {selectedTeam} setTeam = {setTeam} />}>
           </Route>
           <Route path='*' element={<NotFound />}>
           </Route>
